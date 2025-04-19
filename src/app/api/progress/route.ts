@@ -1,7 +1,7 @@
 // src/app/api/progress/route.ts
 import { NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '../auth/[...nextauth]/route'
+import { authOptions } from '@/lib/authOptions'
 import clientPromise from '@/lib/mongodb'
 
 // GET: Récupérer la progression de l'utilisateur
