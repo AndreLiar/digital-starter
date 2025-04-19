@@ -47,8 +47,8 @@ export default function Home() {
         </div>
 
         <div className={styles.communityProof}>
-          <p>👥 <strong>+150 testeurs</strong> déjà conquis</p>
-          <p>💬 <strong>97% satisfaits</strong> de l’accompagnement IA</p>
+        <p>👥 Rejoignez la communauté des premiers utilisateurs</p>
+<p>💬 Partagez vos retours, on co-construit ensemble !</p>
         </div>
 
         <Image
