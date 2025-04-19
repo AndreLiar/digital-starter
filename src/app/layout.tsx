@@ -5,6 +5,7 @@ import SessionWrapper from '@/components/SessionWrapper'
 import FloatingAssistant from '@/components/FloatingAssistant'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import 'animate.css/animate.min.css' // ✅ ici c’est OK
 
 export const metadata = {
   title: 'Digital Starter',
