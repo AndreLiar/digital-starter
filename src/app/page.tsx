@@ -25,10 +25,12 @@ export default function Home() {
       </header>
 
       <main className={styles.main}>
-        <h2 className={styles.hero}>
-          🧓 Pour les adultes qui veulent<br />
-          <span>maîtriser le numérique simplement</span>
-        </h2>
+      <h2 className={styles.hero}>
+  🎯 Devenez à l’aise avec le numérique<br />
+  <span>sans stress ni jargon</span>
+</h2>
+
+
         <p className={styles.subtext}>
           Accompagnement pas à pas + Assistant IA personnalisé  
           <br /><strong>Confiance. Simplicité. Autonomie.</strong>

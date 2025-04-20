@@ -142,10 +142,13 @@
 
 .features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
   max-width: 900px;
   margin: 2rem auto;
+  width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
 .featureCard {
@@ -205,4 +208,14 @@
 
 .footerLinks a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .featureCard {
+    padding: 1.5rem 1rem;
+  }
 }
