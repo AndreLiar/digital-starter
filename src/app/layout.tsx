@@ -2,7 +2,7 @@
 // src/app/layout.tsx
 import './globals.css'
 import SessionWrapper from '@/components/SessionWrapper'
-import LayoutWithAssistant from '@/components/LayoutWithAssistant'
+import FloatingAssistant from '@/components/FloatingAssistant'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -29,7 +29,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
         />
-      
         <script
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
           defer
@@ -37,7 +36,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body style={{ backgroundColor: '#f8f9fa', minHeight: '100vh', margin: 0 }}>
         <SessionWrapper>
-          <LayoutWithAssistant>{children}</LayoutWithAssistant>
+          {children}
+          <FloatingAssistant />
           <ToastContainer position="top-center" autoClose={3000} />
         </SessionWrapper>
       </body>
