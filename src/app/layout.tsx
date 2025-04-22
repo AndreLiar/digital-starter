@@ -1,17 +1,19 @@
 
 // src/app/layout.tsx
+'use client'
+
 import './globals.css'
 import SessionWrapper from '@/components/SessionWrapper'
 import FloatingAssistant from '@/components/FloatingAssistant'
+import { usePathname } from 'next/navigation'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-export const metadata = {
-  title: 'Digital Starter',
-  description: 'Apprentissage numérique guidé avec IA',
-}
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname()
+
+  const hideAssistant = pathname === '/' || pathname.startsWith('/register') || pathname.startsWith('/login')
+
   return (
     <html lang="fr">
       <head>
@@ -19,8 +21,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#ffffff" />
         <link rel="icon" href="/favicon.ico" />
-
-        {/* Bootstrap & Icons */}
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body style={{ backgroundColor: '#f8f9fa', minHeight: '100vh', margin: 0 }}>
         <SessionWrapper>
           {children}
-          <FloatingAssistant />
+          {!hideAssistant && <FloatingAssistant />}
           <ToastContainer position="top-center" autoClose={3000} />
         </SessionWrapper>
       </body>
