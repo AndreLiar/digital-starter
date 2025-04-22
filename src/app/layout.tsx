@@ -1,12 +1,9 @@
 
 // src/app/layout.tsx
-'use client'
-
 import './globals.css'
 import SessionWrapper from '@/components/SessionWrapper'
-import FloatingAssistant from '@/components/FloatingAssistant'
+import LayoutWithAssistant from '@/components/LayoutWithAssistant'
 import { ToastContainer } from 'react-toastify'
-import { usePathname } from 'next/navigation'
 import 'react-toastify/dist/ReactToastify.css'
 
 export const metadata = {
@@ -15,12 +12,6 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname()
-
-  // Liste des pages où on NE veut PAS afficher l'assistant
-  const excludedPaths = ['/', '/register', '/login']
-  const shouldShowAssistant = !excludedPaths.includes(pathname)
-
   return (
     <html lang="fr">
       <head>
@@ -46,8 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body style={{ backgroundColor: '#f8f9fa', minHeight: '100vh', margin: 0 }}>
         <SessionWrapper>
-          {children}
-          {shouldShowAssistant && <FloatingAssistant />}
+          <LayoutWithAssistant>{children}</LayoutWithAssistant>
           <ToastContainer position="top-center" autoClose={3000} />
         </SessionWrapper>
       </body>
