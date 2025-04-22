@@ -142,13 +142,26 @@
 
 .features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* 👈 3 colonnes forcées sur grand écran */
   gap: 1.5rem;
-  max-width: 900px;
+  max-width: 1200px;
   margin: 2rem auto;
-  width: 100%;
   padding: 0 1rem;
   box-sizing: border-box;
+}
+
+/* En tablette : 2 colonnes */
+@media (max-width: 992px) {
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* En mobile : 1 colonne */
+@media (max-width: 576px) {
+  .features {
+    grid-template-columns: 1fr;
+  }
 }
 
 .featureCard {
