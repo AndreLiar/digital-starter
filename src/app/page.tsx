@@ -1,45 +1,93 @@
 //src/app/page.tsx
-import './globals.css'
-import SessionWrapper from '@/components/SessionWrapper'
-import FloatingAssistant from '@/components/FloatingAssistant'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+'use client'
 
-export const metadata = {
-  title: 'Digital Starter',
-  description: 'Apprentissage numérique guidé avec IA',
-}
+import Image from 'next/image'
+import Link from 'next/link'
+import styles from './page.module.css'
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function Home() {
   return (
-    <html lang="fr">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#ffffff" />
-        <link rel="icon" href="/favicon.ico" />
+    <div className={styles.landing}>
+      <header className={styles.header}>
+        <div className={styles.logoBlock}>
+          <Image
+            src="/digital-starter-logo.png"
+            alt="Digital Starter Logo"
+            width={48}
+            height={48}
+            priority
+          />
+          <h1 className={styles.title}>Digital Starter</h1>
+        </div>
+        <Link href="/register" className={styles.topCta}>
+          🔑 Rejoindre la Bêta
+        </Link>
+      </header>
 
-        {/* Bootstrap & Icons */}
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      <main className={styles.main}>
+      <h2 className={styles.hero}>
+  🎯 Devenez à l’aise avec le numérique<br />
+  <span>sans stress ni jargon</span>
+</h2>
+
+
+        <p className={styles.subtext}>
+          Accompagnement pas à pas + Assistant IA personnalisé  
+          <br /><strong>Confiance. Simplicité. Autonomie.</strong>
+        </p>
+
+        <div className={styles.ctaButtons}>
+          <Link href="/register" className={styles.primaryBtn}>
+            🆓 Créer un compte gratuitement
+          </Link>
+          <Link href="/phases" className={styles.secondaryBtn}>
+            📘 Explorer les étapes
+          </Link>
+          <Link href="/assistant" className={styles.ghostBtn}>
+            🤖 Poser une question à l’IA
+          </Link>
+        </div>
+
+        <div className={styles.communityProof}>
+        <p>👥 Rejoignez la communauté des premiers utilisateurs</p>
+<p>💬 Partagez vos retours, on co-construit ensemble !</p>
+        </div>
+
+        <Image
+          src="/digital-learning-illustration.png"
+          alt="Illustration du parcours digital"
+          width={600}
+          height={400}
+          className={styles.heroImage}
+          priority
         />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
-        />
-        <script
-          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-          defer
-        />
-      </head>
-      <body style={{ backgroundColor: '#f8f9fa', minHeight: '100vh', margin: 0 }}>
-        <SessionWrapper>
-          {children}
-          <FloatingAssistant />
-          <ToastContainer position="top-center" autoClose={3000} />
-        </SessionWrapper>
-      </body>
-    </html>
+
+        <div className={styles.features}>
+          <div className={styles.featureCard}>
+            <i className="bi bi-check-circle-fill"></i>
+            <h3>Pas besoin d’être expert</h3>
+            <p>Instructions claires, adaptées à tous niveaux</p>
+          </div>
+          <div className={styles.featureCard}>
+            <i className="bi bi-robot"></i>
+            <h3>Assistant IA inclus</h3>
+            <p>Posez vos questions, il vous aide 24h/24</p>
+          </div>
+          <div className={styles.featureCard}>
+            <i className="bi bi-person-heart"></i>
+            <h3>Fait pour les 40 ans et +</h3>
+            <p>Interface lisible, rassurante et intuitive</p>
+          </div>
+        </div>
+      </main>
+
+      <footer className={styles.footer}>
+        <p>© 2025 Digital Starter – Tous droits réservés</p>
+        <div className={styles.footerLinks}>
+          <Link href="/privacy">Confidentialité</Link>
+          <Link href="/contact">Contact & Feedback</Link>
+        </div>
+      </footer>
+    </div>
   )
 }
