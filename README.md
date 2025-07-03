@@ -39,3 +39,5 @@
 - **Vercel** (hébergement gratuit)
 
 ---
+
+<!-- Trigger Vercel deployment -->
