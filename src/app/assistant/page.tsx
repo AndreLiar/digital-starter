@@ -15,10 +15,15 @@ export default function AssistantPage() {
   const [currentPhase, setCurrentPhase] = useState<any | null>(null)
   const messagesEndRef = useRef<HTMLDivElement | null>(null)
 
-  // Charger historique
+  // Effet initial pour définir un message de bienvenue
   useEffect(() => {
-    const saved = localStorage.getItem('assistant:history')
-    if (saved) setMessages(JSON.parse(saved))
+    setMessages([
+      {
+        role: 'assistant',
+        content:
+          "Bonjour ! Je suis votre assistant IA. Comment puis-je vous aider ?",
+      },
+    ])
 
     const savedPhaseId = localStorage.getItem('current-phase-id')
     if (savedPhaseId) {
@@ -58,7 +63,6 @@ export default function AssistantPage() {
       const aiMsg: Message = { role: 'assistant', content: fullMsg }
       const finalMessages = [...updatedMessages, aiMsg]
       setMessages(finalMessages)
-      localStorage.setItem('assistant:history', JSON.stringify(finalMessages))
       setTyping('')
       setLoading(false)
     })
@@ -80,7 +84,6 @@ export default function AssistantPage() {
 
   const clearMessages = () => {
     setMessages([])
-    localStorage.removeItem('assistant:history')
   }
 
   return (

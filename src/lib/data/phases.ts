@@ -1,11 +1,11 @@
-// lib/data/phases.ts
+// src/lib/data/phases.ts
 
 /**
  * Objectif global :
- * Devenez à l’aise avec le numérique — sans stress ni jargon !
+ * Devenez le gardien de votre vie numérique — protégez vos données, votre identité et votre sérénité.
  */
 export const programmeTagline =
-  'Devenez à l’aise avec le numérique — sans stress ni jargon !';
+  'Devenez le gardien de votre vie numérique — protégez vos données, votre identité et votre sérénité.';
 
 /* ------------------------------------------------------------------ */
 /* Modèle d’une phase d’apprentissage                                  */
@@ -15,7 +15,7 @@ export type Phase = {
   title: string;
   duration: string;
   objectif: string;
-  actions: string[];
+  actions: { title: string; details: string }[]; // 👈 Structure modifiée
   outils: string[];
   exemples?: string[];
   resultat: string;
@@ -23,400 +23,369 @@ export type Phase = {
 };
 
 /* ------------------------------------------------------------------ */
-/* Parcours progressif : débutant → autonomie avancée                  */
+/* Parcours de sensibilisation à la sécurité numérique                */
 /* ------------------------------------------------------------------ */
 export const phases: Phase[] = [
-  /* 1. Démarrage ordinateur --------------------------------------- */
+  /* 1. Mots de passe & 2FA --------------------------------------- */
   {
     id: '1',
-    title: 'Prendre le contrôle de son ordinateur',
-    duration: 'Semaines 1 – 2',
+    title: 'Mots de passe robustes & Double Sécurité (2FA)',
+    duration: 'Module de 45 minutes',
     objectif:
-      'Comprendre l’écran d’accueil, ranger ses fichiers et surfer sur Internet sans appréhension.',
+      'Créer des mots de passe impossibles à deviner et ajouter une couche de sécurité infaillible à vos comptes.',
     actions: [
-      'Allumer / éteindre son ordinateur proprement',
-      'Créer, renommer, déplacer et supprimer dossiers / fichiers',
-      'Installer un navigateur (Chrome ou Firefox)',
-      'Faire une recherche simple (Google / YouTube)',
-      'Créer une adresse Gmail et envoyer un e‑mail avec pièce jointe',
-      'Installer / vérifier un antivirus gratuit (Microsoft Defender ou Avast)',
+      {
+        title: 'Comprendre ce qui fait un mot de passe FORT',
+        details: `
+          Un mot de passe fort repose sur 3 piliers :
+          <ul>
+            <li><strong>Longueur :</strong> Visez au moins 12 caractères. Plus c'est long, plus c'est sûr.</li>
+            <li><strong>Complexité :</strong> Mélangez majuscules, minuscules, chiffres et symboles (!, @, #, $, %).</li>
+            <li><strong>Unicité :</strong> N'utilisez JAMAIS le même mot de passe pour plusieurs sites.</li>
+          </ul>
+          L'astuce est de créer une phrase de passe facile à retenir pour vous, mais difficile à deviner. Exemple : "MonChatAdoreLesCroquettes!2024"
+        `,
+      },
+      {
+        title: 'Installer et utiliser un gestionnaire de mots de passe',
+        details: `
+          Un gestionnaire de mots de passe est un coffre-fort numérique. Il retient tous vos mots de passe pour vous.
+          <ol>
+            <li><strong>Choisissez un gestionnaire :</strong> Bitwarden est une excellente option gratuite et open-source.</li>
+            <li><strong>Installez-le :</strong> Ajoutez l'extension à votre navigateur et téléchargez l'application sur votre téléphone.</li>
+            <li><strong>Créez un mot de passe maître TRÈS solide :</strong> C'est le seul que vous devrez retenir.</li>
+            <li><strong>Commencez à l'utiliser :</strong> Enregistrez vos mots de passe existants et laissez-le en générer de nouveaux, longs et complexes, pour chaque nouveau compte.</li>
+          </ol>
+        `,
+      },
+      {
+        title: 'Activer la vérification en 2 étapes (2FA)',
+        details: `
+          La 2FA ajoute une deuxième couche de sécurité. Même si quelqu'un vole votre mot de passe, il ne pourra pas se connecter sans votre téléphone.
+          <ul>
+            <li><strong>Comment ça marche ?</strong> Après avoir entré votre mot de passe, le site vous demande un code unique généré par une application sur votre téléphone (comme Google Authenticator ou Authy).</li>
+            <li><strong>Où l'activer ?</strong> Allez dans les paramètres de sécurité de vos comptes les plus importants (Google, Apple, Facebook, banque...). Cherchez l'option "Validation en deux étapes", "Vérification en deux étapes" ou "2FA".</li>
+            <li><strong>Suivez les instructions :</strong> Scannez le QR code avec votre application d'authentification et sauvegardez les codes de secours dans un endroit sûr.</li>
+          </ul>
+        `,
+      },
+      {
+        title: 'Identifier les 5 erreurs les plus communes à éviter',
+        details: `
+          <ol>
+            <li><strong>Réutiliser le même mot de passe :</strong> Si un site est piraté, tous vos comptes sont en danger.</li>
+            <li><strong>Utiliser des informations personnelles :</strong> Dates de naissance, noms de proches, adresses... sont faciles à deviner.</li>
+            <li><strong>Choisir des mots du dictionnaire :</strong> "chocolat123" est très faible.</li>
+            <li><strong>Stocker les mots de passe en clair :</strong> Ne les écrivez pas dans un fichier texte ou sur un post-it.</li>
+            <li><strong>Les partager :</strong> Ne donnez jamais votre mot de passe à qui que ce soit.</li>
+          </ol>
+        `,
+      },
+      {
+        title: 'Vérifier si vos mots de passe ont déjà fuité',
+        details: `
+          Des sites web se font pirater tous les jours. Il est important de savoir si vos informations ont été compromises.
+          <ol>
+            <li><strong>Allez sur le site :</strong> <a href="https://haveibeenpwned.com/" target="_blank" rel="noopener noreferrer">Have I Been Pwned?</a></li>
+            <li><strong>Entrez votre adresse e-mail :</strong> Le site vous dira si votre adresse e-mail a été trouvée dans une fuite de données connue.</li>
+            <li><strong>Si vous êtes "pwned" (piraté) :</strong> Changez immédiatement le mot de passe du ou des comptes concernés. Utilisez votre gestionnaire pour créer un mot de passe unique et fort.</li>
+          </ol>
+        `,
+      },
     ],
     outils: [
-      'Explorateur de fichiers',
-      'Google Chrome ou Firefox',
-      'Gmail, YouTube',
-      'Microsoft Defender ou Avast',
-      'Google Drive (15 Go gratuits)',
-      'VLC, lecteur PDF',
+      'Bitwarden (Gestionnaire de mots de passe)',
+      'Have I Been Pwned (Service de vérification)',
+      'Paramètres de sécurité Google/Apple',
     ],
     exemples: [
-      'Rechercher une vidéo de gymnastique douce',
-      'Créer un dossier “Documents administratifs”',
-      'Envoyer une photo par e‑mail',
+      'Transformer "azerty123" en "Av!on-R@pide-5-Jup!ter"',
+      'Utiliser Google Authenticator pour générer un code 2FA',
     ],
     resultat:
-      'Vous manipulez vos dossiers, faites vos premières recherches et envoyez un e‑mail en autonomie.',
+      'Vos comptes sont protégés par des mots de passe uniques et une double vérification. Le piratage devient quasi impossible.',
     modeEmploi:
-      '🟡 Lisez → 🟢 Testez sur VOTRE ordinateur → ✅ Cochez quand c’est fait. Recommencez sans pression.',
+      '🟡 Lisez → 🟢 Appliquez sur UN de vos comptes → ✅ Cochez. La sécurité est une habitude, pas une course.',
   },
 
-  /* 2. Smartphone & applis utiles ---------------------------------- */
+  /* 2. Phishing & Arnaques ---------------------------------- */
   {
     id: '2',
-    title: 'Maîtriser son smartphone et ses applis utiles',
-    duration: 'Semaines 3 – 4',
+    title: 'Détecter le Phishing et les Arnaques en Ligne',
+    duration: 'Module de 60 minutes',
     objectif:
-      'Installer, organiser et mettre à jour les applications indispensables sans saturer son téléphone.',
+      'Devenir un véritable détecteur de fraudes pour ne plus jamais tomber dans les pièges des arnaqueurs.',
     actions: [
-      'Mettre à jour iOS ou Android',
-      'Installer une appli depuis l’App Store / Play Store',
-      'Organiser les icônes en dossiers (photo, santé, transport…)',
-      'Sauvegarder automatiquement les photos (Google Photos / iCloud)',
-      'Activer le mode économie de batterie et gérer les notifications',
+      {
+        title: 'Analyser un e-mail de phishing (faux message de banque, colis, etc.)',
+        details: `
+          Examinez attentivement l'expéditeur, l'objet, le contenu et les liens. Les arnaqueurs imitent souvent des marques connues.
+          <ul>
+            <li><strong>Expéditeur :</strong> Vérifiez l'adresse e-mail complète, pas seulement le nom affiché.</li>
+            <li><strong>Objet :</strong> Méfiez-vous des objets alarmistes ou trop alléchants.</li>
+            <li><strong>Contenu :</strong> Fautes d'orthographe, grammaire approximative, ton menaçant ou trop beau pour être vrai.</li>
+            <li><strong>Liens :</strong> Ne cliquez jamais directement. Survolez-les pour voir l'URL réelle.</li>
+          </ul>
+        `,
+      },
+      {
+        title: 'Identifier les 7 indices qui trahissent une arnaque',
+        details: `
+          Les signes courants incluent : une demande d'informations personnelles urgentes, des menaces, des offres trop belles pour être vraies, des fautes de langue, des liens suspects, des pièces jointes inattendues, et un expéditeur inconnu ou générique.
+        `,
+      },
+      {
+        title: 'Apprendre la technique du survol de lien ("link hovering")',
+        details: `
+          Avant de cliquer sur un lien dans un e-mail ou sur une page web, passez votre souris dessus (sans cliquer). L'URL réelle s'affichera généralement en bas à gauche de votre navigateur. Si l'URL ne correspond pas à ce que vous attendez (ex: un lien PayPal qui mène à un site étrange), ne cliquez pas !
+        `,
+      },
+      {
+        title: 'Reconnaître le "smishing" (phishing par SMS) et le "vishing" (par téléphone)',
+        details: `
+          <ul>
+            <li><strong>Smishing :</strong> Phishing par SMS. Messages vous demandant de cliquer sur un lien pour un colis, une amende, un remboursement, etc.</li>
+            <li><strong>Vishing :</strong> Phishing par appel téléphonique. L'arnaqueur se fait passer pour une banque, un support technique, etc., pour vous soutirer des informations.</li>
+          </ul>
+          La règle d'or : ne jamais donner d'informations personnelles ou bancaires par SMS ou téléphone si vous n'êtes pas à l'origine de l'appel.
+        `,
+      },
+      {
+        title: 'Savoir quoi faire si vous avez cliqué sur un lien suspect',
+        details: `
+          <ul>
+            <li><strong>Ne paniquez pas :</strong> La simple ouverture d'un lien est rarement dangereuse.</li>
+            <li><strong>Ne saisissez aucune information :</strong> Si une page s'ouvre et vous demande des identifiants, ne les entrez pas.</li>
+            <li><strong>Fermez la page :</strong> Fermez l'onglet ou la fenêtre immédiatement.</li>
+            <li><strong>Changez vos mots de passe :</strong> Par précaution, changez les mots de passe des comptes potentiellement ciblés.</li>
+            <li><strong>Analysez votre appareil :</strong> Lancez une analyse antivirus complète.</li>
+            <li><strong>Signalez :</strong> Utilisez des plateformes comme Signal-Spam pour signaler l'arnaque.</li>
+          </ul>
+        `,
+      },
     ],
     outils: [
-      'App Store / Google Play',
-      'Google Photos ou iCloud',
-      'Réglages du téléphone',
-      'Files / Gestionnaire de fichiers',
+      'Votre boîte mail (pour observer)',
+      'Signal-Spam (plateforme de signalement)',
+      'Cybermalveillance.gouv.fr',
     ],
     exemples: [
-      'Installer une appli de transport local',
-      'Créer un dossier “Santé” pour TousAntiCovid, Doctolib…',
-      'Sauvegarder automatiquement ses photos',
+      'Repérer le faux message "Votre compte CPF arrive à expiration"',
+      'Identifier un SMS frauduleux de livraison de colis',
     ],
     resultat:
-      'Téléphone à jour, rangé, sauvegardé et économe en batterie.',
+      'Vous identifiez 99% des tentatives de phishing et savez exactement comment réagir. Votre sérénité est préservée.',
     modeEmploi:
-      'Prenez votre téléphone, ouvrez Réglages, suivez chaque étape et cochez.',
+      'Ouvrez votre boîte mail, analysez un ancien spam avec cette nouvelle grille de lecture, puis cochez.',
   },
 
-  /* 3. Outils du quotidien ----------------------------------------- */
+  /* 3. Navigation Sécurisée ----------------------------------------- */
   {
     id: '3',
-    title: 'Maîtriser les outils du quotidien',
-    duration: 'Semaines 5 – 8',
+    title: 'Navigation Sécurisée sur le Web',
+    duration: 'Module de 30 minutes',
     objectif:
-      'Écrire, s’organiser et communiquer en ligne avec des outils gratuits.',
+      'Surfer sur Internet en toute confiance, en sachant où vous mettez les pieds numériques.',
     actions: [
-      'Créer un document dans Google Docs',
-      'Créer un tableau simple dans Google Sheets',
-      'Prendre des notes structurées dans Notion ou Google Keep',
-      'Rejoindre une visioconférence (Google Meet ou Zoom)',
-      'Réaliser un CV ou une invitation avec Canva',
+      {
+        title: 'Vérifier la présence du "https://" et du cadenas',
+        details: `
+          Lorsque vous visitez un site web, assurez-vous que l'adresse commence par <code>https://</code> et qu'un petit cadenas est visible dans la barre d'adresse de votre navigateur. Cela signifie que la connexion est sécurisée et chiffrée, protégeant ainsi vos données.
+        `,
+      },
+      {
+        title: 'Comprendre et gérer les cookies de votre navigateur',
+        details: `
+          Les cookies sont de petits fichiers que les sites web stockent sur votre ordinateur. Ils peuvent être utiles (garder votre session ouverte) ou servir au suivi publicitaire. Apprenez à les gérer dans les paramètres de votre navigateur : vous pouvez les bloquer, les supprimer régulièrement ou n'autoriser que les cookies essentiels.
+        `,
+      },
+      {
+        title: 'Utiliser le mode de navigation privée (et comprendre ses limites)',
+        details: `
+          Le mode de navigation privée (Incognito sur Chrome, Private Window sur Firefox) empêche le navigateur d'enregistrer votre historique, vos cookies et les données de formulaires. Utile pour les ordinateurs partagés, mais attention : il ne vous rend pas anonyme sur Internet et votre fournisseur d'accès peut toujours voir votre activité.
+        `,
+      },
+      {
+        title: 'Nettoyer régulièrement vos extensions de navigateur',
+        details: `
+          Les extensions peuvent être pratiques, mais certaines peuvent collecter vos données ou introduire des vulnérabilités. Vérifiez régulièrement la liste de vos extensions et supprimez celles que vous n'utilisez plus ou qui vous semblent suspectes.
+        `,
+      },
+      {
+        title: "Reconnaître les signes d'un site web non sécurisé",
+        details: `
+          Outre l'absence de HTTPS et de cadenas, méfiez-vous des sites avec une mise en page bâclée, des fautes d'orthographe, des pop-ups agressifs, ou des demandes d'informations excessives. Un site non sécurisé peut être un piège à phishing ou héberger des logiciels malveillants.
+        `,
+      },
     ],
     outils: [
-      'Google Docs, Google Sheets',
-      'Notion, Google Keep',
-      'Google Meet ou Zoom',
-      'Canva (offre Free)',
+      'Votre navigateur (Chrome, Firefox, Safari)',
+      'Paramètres de confidentialité du navigateur',
     ],
     exemples: [
-      'Liste de courses partagée',
-      'Suivi de budget mensuel',
-      'Visio de l’association',
+      "Effacer les cookies d'un site marchand après une visite",
+      "Désinstaller une extension que vous n'utilisez plus",
     ],
     resultat:
-      'Vous rédigez, organisez vos idées et communiquez en ligne simplement.',
+      'Vous naviguez sur le web de manière plus sûre, en laissant moins de traces et en évitant les sites dangereux.',
     modeEmploi:
-      'Ouvrez les outils, faites un exercice réel (ex. votre liste de courses), puis cochez.',
+      'Ouvrez les paramètres de votre navigateur, suivez chaque étape et cochez.',
   },
 
-  /* 4. Sécurité numérique ----------------------------------------- */
+  /* 4. Protection des Données Personnelles -------------------------- */
   {
     id: '4',
-    title: 'Sécurité numérique et bons réflexes',
-    duration: 'En continu (module essentiel)',
+    title: 'Protéger ses Données Personnelles',
+    duration: 'Module de 45 minutes',
     objectif:
-      'Adopter les bonnes pratiques pour naviguer sereinement et protéger ses données.',
+      'Reprendre le contrôle sur les informations que vous partagez en ligne, consciemment ou non.',
     actions: [
-      'Reconnaître un e‑mail ou SMS suspect (phishing)',
-      'Créer un mot de passe solide + l’enregistrer dans Bitwarden',
-      'Activer la vérification en 2 étapes sur Gmail',
-      'Comprendre pourquoi ne pas partager ses infos bancaires',
-      'Jouer à un quiz ludique sur la cybersécurité',
+      {
+        title: 'Effectuer un "check-up" de confidentialité sur Facebook et Google',
+        details: `
+          Prenez le temps de parcourir les paramètres de confidentialité de vos comptes Google et Facebook. Ces plateformes offrent des outils pour contrôler qui voit vos informations, vos publications, et comment vos données sont utilisées pour la publicité. Ajustez-les selon votre niveau de confort.
+        `,
+      },
+      {
+        title: "Comprendre ce qu'est une donnée personnelle (RGPD)",
+        details: `
+          Une donnée personnelle est toute information qui permet d'identifier directement ou indirectement une personne physique (nom, adresse e-mail, numéro de téléphone, adresse IP, données de localisation, etc.). Le RGPD (Règlement Général sur la Protection des Données) est une loi européenne qui vous donne des droits sur vos données.
+        `,
+      },
+      {
+        title: 'Limiter le partage de localisation sur votre smartphone',
+        details: `
+          De nombreuses applications demandent l'accès à votre localisation. Vérifiez les paramètres de confidentialité de votre smartphone et désactivez le partage de localisation pour les applications qui n'en ont pas réellement besoin. Vous pouvez souvent choisir de partager votre localisation uniquement lorsque l'application est en cours d'utilisation.
+        `,
+      },
+      {
+        title: 'Utiliser un moteur de recherche respectueux de la vie privée (DuckDuckGo)',
+        details: `
+          Contrairement à Google, DuckDuckGo ne trace pas vos recherches et ne collecte pas vos données personnelles. L'utiliser est un moyen simple de réduire votre empreinte numérique et de protéger votre vie privée en ligne.
+        `,
+      },
+      {
+        title: "Savoir comment exercer votre droit à l'oubli",
+        details: `
+          Le droit à l'oubli (ou droit à l'effacement) vous permet de demander aux moteurs de recherche de supprimer des liens vers des informations vous concernant qui sont obsolètes, inexactes ou préjudiciables. Vous pouvez également demander aux entreprises de supprimer vos données personnelles qu'elles détiennent.
+        `,
+      },
     ],
     outils: [
-      'Bitwarden',
-      'Google Password Manager',
-      'Quiz cybersécurité',
-      'Navigateur sécurisé (Chrome / Firefox à jour)',
+      'Google Dashboard',
+      'Paramètres de confidentialité Facebook',
+      'DuckDuckGo (Moteur de recherche)',
     ],
     exemples: [
-      'Repérer un faux message “Colis en attente”',
-      'Activer la 2FA sur Google',
+      'Rendre votre profil Facebook visible uniquement par vos amis',
+      "Désactiver l'historique de localisation de votre compte Google",
     ],
     resultat:
-      'Vous surfez en toute confiance : mots de passe solides et vigilance accrue.',
+      'Vous maîtrisez quelles informations sont partagées et avec qui. Votre vie privée est mieux gardée.',
     modeEmploi:
-      'Suivez ces actions dès maintenant puis validez vos connaissances avec le quiz.',
+      'Choisissez un compte (Google ou Facebook), faites le check-up complet, puis cochez.',
   },
 
-  /* 5. Réseaux sociaux --------------------------------------------- */
+  /* 5. Sécurité des Appareils --------------------------------------- */
   {
     id: '5',
-    title: 'Communiquer sur les réseaux sociaux en confiance',
-    duration: 'Semaines 9 – 10',
+    title: 'Sécuriser son Ordinateur et son Smartphone',
+    duration: 'Module de 30 minutes',
     objectif:
-      'Créer un compte, publier et échanger en maîtrisant sa confidentialité.',
+      'Transformer vos appareils en forteresses numériques contre les virus et les accès non autorisés.',
     actions: [
-      'Créer un profil Facebook (ou groupe WhatsApp / Signal)',
-      'Régler la confidentialité des publications',
-      'Poster un premier message ou photo',
-      'Répondre à un commentaire ou message privé',
-      'Bloquer / signaler un contenu gênant',
+      {
+        title: 'Activer et configurer le pare-feu de votre ordinateur',
+        details: `
+          Le pare-feu est votre première ligne de défense contre les menaces externes. Il contrôle le trafic réseau entrant et sortant. Assurez-vous qu'il est activé et configuré pour bloquer les connexions non autorisées. Sur Windows, c'est le "Pare-feu Windows Defender"; sur macOS, c'est le "Pare-feu" dans les réglages de sécurité.
+        `,
+      },
+      {
+        title: 'Planifier les mises à jour automatiques (OS et applications)',
+        details: `
+          Les mises à jour logicielles contiennent souvent des correctifs de sécurité importants. Activez les mises à jour automatiques pour votre système d'exploitation (Windows, macOS, Android, iOS) et vos applications. C'est le moyen le plus simple de rester protégé contre les vulnérabilités connues.
+        `,
+      },
+      {
+        title: 'Lancer une analyse antivirus complète (Microsoft Defender ou autre)',
+        details: `
+          Un bon antivirus (comme Microsoft Defender intégré à Windows, ou un tiers) est essentiel. Lancez régulièrement une analyse complète de votre système pour détecter et supprimer les logiciels malveillants. Ne vous fiez pas uniquement à la protection en temps réel.
+        `,
+      },
+      {
+        title: 'Configurer un code de verrouillage robuste sur votre smartphone',
+        details: `
+          Votre smartphone contient une mine d'informations personnelles. Utilisez un code PIN long (6 chiffres ou plus), un schéma complexe, ou mieux, un mot de passe alphanumérique. Activez le déverrouillage par empreinte digitale ou reconnaissance faciale pour plus de commodité, mais gardez un code robuste en secours.
+        `,
+      },
+      {
+        title: 'Chiffrer les données de votre disque dur (BitLocker/FileVault)',
+        details: `
+          Le chiffrement de disque protège vos données même si votre appareil est perdu ou volé. BitLocker pour Windows et FileVault pour macOS chiffrent l'intégralité de votre disque dur. Activez cette fonctionnalité pour une protection maximale de vos informations.
+        `,
+      },
     ],
-    outils: ['Facebook', 'WhatsApp ou Signal', 'Messenger'],
+    outils: ['Microsoft Defender / Antivirus tiers', 'Paramètres système (Windows/macOS/Android/iOS)'],
     exemples: [
-      'Publier une photo visible par vos amis uniquement',
-      'Envoyer un message vocal familial',
+      'Vérifier que votre ordinateur a bien fait sa dernière mise à jour',
+      "Passer d'un code à 4 chiffres à un mot de passe sur votre téléphone",
     ],
     resultat:
-      'Vous partagez et échangez tout en protégeant votre vie privée.',
+      'Vos appareils sont à jour, protégés contre les menaces courantes et verrouillés contre les curieux.',
     modeEmploi:
-      'Créez un compte test si besoin, suivez chaque action et cochez.',
+      'Prenez un appareil (ordinateur ou smartphone), appliquez tous les points, puis cochez.',
   },
 
-  /* 6. Démarches administratives ----------------------------------- */
+  /* 6. Quiz Final -------------------------------------------------- */
   {
     id: '6',
-    title: 'Réaliser ses démarches administratives en ligne',
-    duration: 'Semaines 11 – 12',
+    title: 'Testez vos Réflexes de Cyber-Sentinelle',
+    duration: 'Quiz de 15 minutes',
     objectif:
-      'Utiliser les services publics numériques pour gagner du temps.',
+      'Valider vos nouvelles compétences avec une simulation ludique et obtenir votre badge de Sentinelle Numérique.',
     actions: [
-      'Créer / se connecter avec FranceConnect',
-      'Télécharger un document officiel (impôts, CPAM…)',
-      'Déclarer un changement d’adresse',
-      'Prendre un rendez‑vous médical via Doctolib',
-      'Envoyer un formulaire PDF par e‑mail',
+      {
+        title: 'Répondre à un quiz interactif sur tous les modules',
+        details: `
+          Ce quiz final est conçu pour tester votre compréhension globale des concepts de sécurité abordés dans les modules précédents. Il couvrira des questions sur les mots de passe, le phishing, la navigation sécurisée, la protection des données et la sécurité des appareils.
+        `,
+      },
+      {
+        title: "Analyser 5 exemples d'e-mails et décider s'ils sont légitimes ou des arnaques",
+        details: `
+          Vous serez confronté à des exemples concrets d'e-mails (simulés) et devrez identifier s'il s'agit de tentatives de phishing ou de messages légitimes. Cela mettra en pratique votre capacité à repérer les indices d'une arnaque.
+        `,
+      },
+      {
+        title: "Prendre une décision face à un scénario d'urgence simulé",
+        details: `
+          Un scénario interactif vous mettra en situation face à une menace de sécurité (ex: un message suspect, un compte piraté). Vous devrez choisir la meilleure action à entreprendre parmi plusieurs options, testant ainsi vos réflexes et votre capacité à réagir sous pression.
+        `,
+      },
+      {
+        title: "Obtenir votre score et les axes d'amélioration",
+        details: `
+          À la fin du quiz, vous recevrez un score détaillé et des retours personnalisés sur les domaines où vous excellez et ceux où vous pourriez encore vous améliorer. Cela vous aidera à consolider vos connaissances.
+        `,
+      },
+      {
+        title: 'Recevoir votre badge de "Sentinelle Numérique" à partager',
+        details: `
+          En réussissant ce quiz final, vous obtiendrez un badge numérique de "Sentinelle Numérique", attestant de vos compétences en cybersécurité. Vous pourrez le partager sur vos réseaux sociaux ou l'ajouter à votre CV pour valoriser vos nouvelles compétences.
+        `,
+      },
     ],
     outils: [
-      'FranceConnect',
-      'Impots.gouv, Ameli.fr',
-      'Doctolib',
-      'Adobe Reader',
-      'Gmail',
+      'Quiz interactif (à développer)',
+      'Générateur de badge (à développer)',
     ],
     exemples: [
-      'Télécharger une attestation CPAM',
-      'Envoyer un justificatif de domicile scanné',
+      'Quiz: "Un cadenas vert signifie que le site est 100% sûr. Vrai ou Faux?"',
+      'Simulation: "Vous recevez un appel de votre banque vous demandant votre mot de passe. Que faites-vous?"',
     ],
     resultat:
-      'Vous accomplissez vos démarches courantes sans déplacement.',
+      'Vous avez la confiance et les compétences pour naviguer dans le monde numérique de manière autonome et sécurisée.',
     modeEmploi:
-      'Choisissez une démarche réelle, suivez pas‑à‑pas, puis cochez.',
-  },
-
-  /* 7. Découverte IA ----------------------------------------------- */
-  {
-    id: '7',
-    title: 'Découvrir l’IA au quotidien',
-    duration: 'Semaines 13 – 14',
-    objectif:
-      'Utiliser l’IA comme assistant pour gagner du temps et trouver des idées.',
-    actions: [
-      'Poser une question à ChatGPT ou Gemini',
-      'Demander un résumé ou correction de texte',
-      'Créer une carte d’invitation avec Canva IA',
-      'Tester l’écriture assistée dans Notion AI ou Google Docs',
-      'Explorer l’appli mobile Gemini',
-    ],
-    outils: [
-      'ChatGPT',
-      'Gemini',
-      'Canva IA',
-      'Notion AI',
-      'Google Docs (IA)',
-    ],
-    exemples: [
-      '« Explique‑moi la fibre optique en mots simples »',
-      'Corriger une lettre de réclamation',
-    ],
-    resultat:
-      'Vous dialoguez avec une IA et créez textes / visuels rapidement.',
-    modeEmploi:
-      'Testez chaque outil avec un besoin réel, puis cochez.',
-  },
-
-  /* 8. Acheter & vendre en ligne ----------------------------------- */
-  {
-    id: '8',
-    title: 'Acheter et vendre en ligne en toute sécurité',
-    duration: 'Semaines 15 – 16',
-    objectif:
-      'Trouver une bonne affaire, payer sans risque et revendre simplement.',
-    actions: [
-      'Créer un compte (Le Bon Coin, Vinted ou Amazon)',
-      'Comparer les annonces et vérifier les évaluations',
-      'Ajouter un moyen de paiement sécurisé',
-      'Passer une commande et suivre la livraison',
-      'Déposer une évaluation',
-      'Mettre en vente un objet (photo, prix, étiquette colis)',
-      'Reconnaître et signaler une arnaque',
-    ],
-    outils: [
-      'Le Bon Coin', 'Vinted', 'Amazon',
-      'PayPal / carte virtuelle',
-      'Colissimo / Mondial Relay',
-    ],
-    exemples: [
-      'Acheter un livre d’occasion et suivre le colis',
-      'Vendre un vêtement sur Vinted',
-    ],
-    resultat:
-      'Vous achetez en confiance et revendez vos objets sans stress.',
-    modeEmploi:
-      'Faites d’abord UN petit achat, puis UNE petite vente, puis cochez.',
-  },
-
-  /* 9. Gérer son argent en ligne ----------------------------------- */
-  {
-    id: '9',
-    title: 'Gérer son argent en ligne en toute sérénité',
-    duration: 'Semaines 17 – 18',
-    objectif:
-      'Consulter ses comptes, payer sans contact et suivre son budget.',
-    actions: [
-      'Installer l’appli de votre banque + 2FA',
-      'Consulter solde et opérations',
-      'Ajouter carte à Google Pay / Apple Pay et faire un paiement NFC',
-      'Activer notifications en temps réel',
-      'Installer une appli budget (Bankin’, Linxo…) et la connecter',
-      'Catégoriser les dépenses et fixer une alerte',
-    ],
-    outils: [
-      'Appli banque mobile',
-      'Google Pay / Apple Pay',
-      'Bankin’, Linxo, Yolt',
-    ],
-    exemples: [
-      'Payer le café en NFC',
-      'Recevoir une alerte “Budget courses dépassé”',
-    ],
-    resultat:
-      'Vous suivez vos finances en temps réel et payez sans stress.',
-    modeEmploi:
-      'Installez l’appli banque, testez, puis cochez chaque étape.',
-  },
-
-  /* 10. Mini‑projet personnel ------------------------------------- */
-  {
-    id: '10',
-    title: 'Réaliser un mini‑projet personnel',
-    duration: 'Semaines 19 – 20',
-    objectif:
-      'Mettre en pratique vos acquis dans un projet concret.',
-    actions: [
-      'Créer un budget familial dans Google Sheets',
-      'Concevoir un CV ou une présentation dans Canva',
-      'Rédiger une lettre de motivation (Docs + IA)',
-      'Partager un dossier avec Google Drive',
-      'Gérer une to‑do list dans Notion ou Google Keep',
-    ],
-    outils: [
-      'Google Sheets', 'Canva', 'Google Docs',
-      'Google Drive', 'Notion / Google Keep',
-    ],
-    exemples: [
-      'Suivre dépenses et revenus du ménage',
-      'Envoyer CV + lettre à une association',
-    ],
-    resultat:
-      'Vous créez, organisez et partagez un projet numérique de A à Z.',
-    modeEmploi:
-      'Choisissez LE projet qui vous motive, avancez étape par étape, cochez.',
-  },
-
-  /* 11. Automatiser les tâches ------------------------------------ */
-  {
-    id: '11',
-    title: 'Automatiser les petites tâches du quotidien',
-    duration: 'Semaines 21 – 22',
-    objectif:
-      'Gagner du temps avec rappels, modèles de mails et petits raccords d’applications.',
-    actions: [
-      'Créer un rappel récurrent dans Google Calendar',
-      'Programmer une alarme hebdo sur smartphone',
-      'Créer un modèle de mail (Gmail / Outlook)',
-      'Installer IFTTT et connecter deux services',
-      'Automatiser la sauvegarde de photos vers Drive',
-      'Créer un bloc‑note courses partagé auto‑mis à jour',
-    ],
-    outils: [
-      'Google Calendar',
-      'Gmail / Outlook',
-      'IFTTT',
-      'Google Drive',
-      'Notion / Google Keep',
-    ],
-    exemples: [
-      'SMS “Parapluie” si pluie annoncée',
-      'Filtrer factures PDF vers Drive',
-    ],
-    resultat:
-      'La technologie gère rappels et routines ; vous gagnez du temps.',
-    modeEmploi:
-      'Commencez par un rappel simple, puis testez une automatisation IFTTT, cochez.',
-  },
-
-  /* 12. Créativité numérique -------------------------------------- */
-  {
-    id: '12',
-    title: 'Créativité numérique : photos, vidéos & designs',
-    duration: 'Semaines 23 – 24',
-    objectif:
-      'Retoucher photos, monter une vidéo et créer des visuels attrayants.',
-    actions: [
-      'Retoucher 5 photos (Google Photos / Snapseed)',
-      'Créer un diaporama 1 min (Canva / Clipchamp)',
-      'Ajouter filtre + texte sur courte vidéo mobile',
-      'Concevoir une invitation avec Canva avancé',
-      'Exporter en MP4 / PDF et partager',
-      'Compresser une vidéo trop lourde',
-    ],
-    outils: [
-      'Canva', 'Clipchamp',
-      'Google Photos', 'Snapseed',
-      'Pixabay / Unsplash',
-    ],
-    exemples: [
-      'Carte d’anniversaire animée',
-      'Vidéo vacances + musique libre',
-    ],
-    resultat:
-      'Vos souvenirs sont mis en valeur et faciles à partager.',
-    modeEmploi:
-      'Prenez un souvenir concret, suivez retouche → montage → partage, cochez.',
-  },
-
-  /* 13. Bien‑être digital ----------------------------------------- */
-  {
-    id: '13',
-    title: 'Bien‑être digital : utiliser la tech sans fatigue',
-    duration: 'Semaines 25 – 26 (ou en continu)',
-    objectif:
-      'Réduire la fatigue visuelle, gérer son temps d’écran et garder une posture saine.',
-    actions: [
-      'Activer les rapports “Temps d’écran” (iOS / Android)',
-      'Définir une limite quotidienne pour une appli',
-      'Programmer le filtre lumière bleue le soir',
-      'Appliquer la règle 20‑20‑20 (pauses régulières)',
-      'Ajuster la hauteur de l’écran + support nuque',
-      'Utiliser un minuteur Pomodoro pour micro‑pauses',
-    ],
-    outils: [
-      'Temps d’écran (iOS) / Digital Wellbeing (Android)',
-      'Night Shift / Night Light',
-      'Applis Pomodoro (Focus To‑Do, Forest…)'
-    ],
-    exemples: [
-      'Alerte après 1 h sur Facebook',
-      'Écran en teinte chaude après 20 h',
-    ],
-    resultat:
-      'Usage équilibré : moins de fatigue oculaire, meilleure posture.',
-    modeEmploi:
-      'Mesurez votre temps d’écran, fixez UNE limite, activez le filtre nuit, cochez.',
+      "Faites le quiz pour tester vos connaissances. Ne vous inquiétez pas du score, l'important est d'apprendre !",
   },
 ];

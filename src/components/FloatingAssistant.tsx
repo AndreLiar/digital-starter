@@ -20,7 +20,7 @@ export default function FloatingAssistant() {
   const sendMessage = async () => {
     if (!input.trim()) return
     const currentPhaseId = localStorage.getItem('current-phase-id')
-    const currentContext = currentPhaseId ? `phase ${currentPhaseId}` : 'formation numérique'
+    const currentContext = currentPhaseId ? `cybersécurité (module ${currentPhaseId})` : 'cybersécurité'
 
     const userMsg: Message = { role: 'user', content: input }
     const updated = [...messages, userMsg]
@@ -80,7 +80,7 @@ export default function FloatingAssistant() {
       >
         {showHint && (
           <div className="bg-white text-dark p-2 rounded shadow-sm mb-2 text-nowrap">
-            💡 Besoin d’un coup de main ?
+            💡 Une question de cybersécurité ?
           </div>
         )}
         <div
@@ -97,14 +97,14 @@ export default function FloatingAssistant() {
         <div className="position-fixed bottom-0 end-0 m-4 p-3 rounded-4 shadow bg-white"
              style={{ width: 360, height: 500, zIndex: 1060 }}>
           <div className="d-flex justify-content-between align-items-center mb-2">
-            <strong>Assistant IA 🤖</strong>
+            <strong>Cyber-Assistant 🤖</strong>
             <button className="btn-close" onClick={() => setOpen(false)} />
           </div>
 
           <div className="overflow-auto mb-2" style={{ height: 320 }}>
             {messages.length === 0 && (
               <div className="text-muted small mb-2">
-                Salut 👋 Je suis là si tu veux un coup de main sur cette phase.
+                Bonjour ! Je suis votre Cyber-Assistant. Posez-moi une question sur la sécurité numérique.
               </div>
             )}
             {messages.map((msg, i) => (
@@ -123,7 +123,7 @@ export default function FloatingAssistant() {
             rows={2}
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Demande de l'aide ici..."
+            placeholder="Ex: C'est quoi un phishing ?"
           />
           <button className="btn btn-primary w-100" onClick={sendMessage}>
             Envoyer

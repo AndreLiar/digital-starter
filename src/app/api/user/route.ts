@@ -19,6 +19,7 @@ export async function GET() {
       email: 1,
       name: 1,
       createdAt: 1,
+      completedModules: 1, // Include completedModules
       _id: 0
     }
   })

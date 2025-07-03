@@ -154,6 +154,10 @@ export default function ProfilPage() {
                   ? Math.round(progress.checked.filter(Boolean).length / progress.checked.length * 100)
                   : 0
 
+                const phaseIndex = phases.findIndex(p => p.id === phase.id)
+                const previousPhaseId = phases[phaseIndex - 1]?.id
+                const isLocked = phaseIndex !== 0 && !userData?.completedModules?.includes(previousPhaseId)
+
                 return (
                   <li key={phase.id} className="list-group-item">
                     <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2 mb-2">
@@ -162,15 +166,21 @@ export default function ProfilPage() {
                         <p className="mb-0 text-muted small">{percent}% complété</p>
                       </div>
                       <span className={`badge ${percent === 100 ? 'bg-success' : 'bg-secondary'}`}>
-                        {percent === 100 ? '✅ Terminé' : `${percent}%`}
+                        {isLocked ? '🔒 Verrouillé' : (percent === 100 ? '✅ Terminé' : `${percent}%`)}
                       </span>
                     </div>
-                    <Link
-                      href={`/phases/${phase.id}`}
-                      className="btn btn-outline-primary btn-sm w-100"
-                    >
-                      Continuer cette phase →
-                    </Link>
+                    {isLocked ? (
+                      <button className="btn btn-secondary btn-sm w-100" disabled>
+                        🔒 Verrouillé
+                      </button>
+                    ) : (
+                      <Link
+                        href={`/phases/${phase.id}`}
+                        className="btn btn-outline-primary btn-sm w-100"
+                      >
+                        Continuer cette phase →
+                      </Link>
+                    )}
                   </li>
                 )
               })}

@@ -35,14 +35,8 @@ export default function RegisterPage() {
         
         {/* Logo + Header */}
         <div className="text-center mb-4">
-          <Image
-            src="/digital-starter-logo.png"
-            alt="Digital Starter Logo"
-            width={56}
-            height={56}
-            className="mb-2"
-          />
-          <h2 className="fw-bold text-primary">Créer un compte</h2>
+          <h2 className="fw-bold text-primary">Digital Sentinel</h2>
+          <p className="text-muted small">Créer un compte</p>
           <p className="text-muted small">Commence ton aventure digitale avec l'IA</p>
         </div>
 

@@ -42,8 +42,7 @@ export default function LoginForm() {
     <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh', backgroundColor: '#f8f9fa' }}>
       <div className="bg-white p-4 p-md-5 rounded shadow" style={{ maxWidth: 480, width: '100%' }}>
         <div className="text-center mb-4">
-          <Image src="/digital-starter-logo.png" alt="Logo Digital Starter" width={56} height={56} className="mb-2" />
-          <h2 className="fw-bold text-primary">Connexion</h2>
+          <h2 className="fw-bold text-primary">Digital Sentinel</h2>
           <p className="text-muted small">Accédez à votre espace personnel</p>
         </div>
 
