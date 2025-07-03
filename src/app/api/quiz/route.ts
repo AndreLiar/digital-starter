@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { callGemini } from '../gemini/route'
+import { callGemini } from '@/lib/gemini'
 
 export async function POST(req: Request) {
   const { phase } = await req.json()
