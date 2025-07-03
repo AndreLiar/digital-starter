@@ -83,8 +83,7 @@ export async function POST(req: Request) {
   }
 }
 
-// Exporter la fonction pour la réutiliser dans d'autres routes
-export { callGemini }
+
 
 export async function GET(req: Request) {
   const session = await getServerSession(authOptions)
