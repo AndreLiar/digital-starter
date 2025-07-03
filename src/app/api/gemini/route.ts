@@ -5,7 +5,7 @@ import { authOptions } from '@/lib/authOptions'
 import clientPromise from '@/lib/mongodb'
 
 // Fonction modulaire pour appeler l'API Gemini
-async function callGemini(messages: any[], format: 'json' | 'text' = 'text') {
+export async function callGemini(messages: any[], format: 'json' | 'text' = 'text') {
   const apiKey = process.env.GEMINI_API_KEY
   if (!apiKey) {
     throw new Error('Clé API Gemini manquante.')
