@@ -145,7 +145,7 @@ export default function PhaseDetailPage() {
       launchConfetti()
       toast.success(`Félicitations ! Vous avez obtenu ${score}/${total}. Module validé !`)
       // Call API to unlock next module
-      if (session?.user) {
+      if (session?.user && phase) { // Add phase check here
         try {
           await fetch('/api/unlock-module', {
             method: 'POST',
